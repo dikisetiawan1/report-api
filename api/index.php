@@ -10,10 +10,11 @@ include "../function/koneksi.php";
 $api_url = "https://vtsapi.easygo-gps.co.id/api/report/lastpositionold";
 $token = "C3639EADE6D24E1481D7BFBDAB918429";
 
+// input no pol baru
 $input_nopol= '["B 9505 feu"];';
 
 
-// ambil data dari url
+// ambil data dari api url
 $curl= curl_init($api_url);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($curl, CURLOPT_POST,1);
@@ -64,13 +65,13 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
       $sql = "SELECT * FROM report_unit";
       $data_query = $koneksi->query($sql);
 
-
+      // jika data tidak kosong, maka hapus semua data
       if(!empty($data_query) && $data_query -> num_rows > 0){
 
         $sql = "DELETE FROM report_unit";
         $koneksi->query($sql);
 
-        // input data ke db myapi
+       // dan jika data kosong maka tambah dengan data yang baru
        $sql = "INSERT INTO report_unit (no_pol, no_aset, msisdn, lat, lon, address, gps_time, received_time, geofence_location, speed, direction, acc, odometer, status_vehicle, report_status, alarm_status,temperature1,temperature2,mainpowervoltage,backupbatteryvoltage,sos , gsm_signal,  rfid_driver, driver, start_moving, start_parking, start_idle, company_nm, can_elements, do_header  ) VALUES ('$no_pol', '$no_aset', '$msisdn', '$lat', '$lon', '$address', '$gps_time', '$received_time', '$geofence_location', '$speed', '$direction', '$acc', '$odometer', '$status_vehicle', '$report_status', '$alarm_status','$temperature1','$temperature2','$mainpowervoltage','$backupbatteryvoltage','$sos' , '$gsm_signal',  '$rfid_driver', '$driver', '$start_moving', '$start_parking', '$start_idle', '$company_nm', '$can_elements', '$do_header' )";
     
        //logika input data
