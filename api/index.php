@@ -11,7 +11,7 @@ $api_url = "https://vtsapi.easygo-gps.co.id/api/report/lastpositionold";
 $token = "C3639EADE6D24E1481D7BFBDAB918429";
 
 // input no pol baru
-$input_nopol= '["B 9505 feu"];';
+$input_nopol= '["B 9625 feu"];';
 
 
 // ambil data dari api url
@@ -86,8 +86,7 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 }
 }
 
-// panggil function
+
 reportDataApi();
 
 ?>
-
