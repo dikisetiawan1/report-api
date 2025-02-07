@@ -1,7 +1,7 @@
 
 <?php
 
-function myDataApi(){
+function reportDataApi(){
   
 // koneksi db
 include "../function/koneksi.php";
@@ -10,7 +10,7 @@ include "../function/koneksi.php";
 $api_url = "https://vtsapi.easygo-gps.co.id/api/report/lastpositionold";
 $token = "C3639EADE6D24E1481D7BFBDAB918429";
 
-$input_nopol= '["B 9505 feu"];';
+$input_nopol= '["B 9625 feu"];';
 
 
 // ambil data dari url
@@ -26,7 +26,6 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
  $data_api = json_decode($response, true);
 
  $data= $data_api['Data'];
-  
 
   // looping data api
   foreach ($data as $row) {
@@ -137,7 +136,7 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 }
 
 // panggil function
-myDataApi();
+reportDataApi();
 
 ?>
 
